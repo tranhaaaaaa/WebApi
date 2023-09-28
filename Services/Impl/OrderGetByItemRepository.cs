@@ -2,8 +2,6 @@
 using FinalApi.Models;
 using FinalApi.Services.Repository;
 
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
-
 namespace FinalApi.Services.Impl
 {
     public class OrderGetByItemRepository : GenerRepository<OrderDto>, Repository.IOrderGetByItemRepository

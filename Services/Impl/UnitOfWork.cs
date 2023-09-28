@@ -9,15 +9,15 @@ namespace FinalApi.Services.Impl
         public UnitOfWork(projectDemoContext context)
         { 
             _context = context;
-            GetOrderRequest = new OrderByIdRepository(_context);
+            OrderById = new OrderByIdRepository(_context);
             CreateOrderRequest = new OrderCreateRepository(_context);
             CustomerRequest = new CustomerVipRepository(_context);
-            OrderDto = new OrderGetByItemRepository(_context);
+            OrderGetByItem = new OrderGetByItemRepository(_context);
             OrderDeleteRequest = new OrderDeleteRepository(_context);
         }
-        public IOrderByIdRepository GetOrderRequest { get; set; } 
+        public IOrderByIdRepository OrderById { get; set; } 
         public IOrderCreateRepository CreateOrderRequest { get; set; }
-        public Repository.IOrderGetByItemRepository OrderDto { get; set; }
+        public Repository.IOrderGetByItemRepository OrderGetByItem { get; set; }
         public ICustomerVipRepository CustomerRequest { get; set; }
         
 

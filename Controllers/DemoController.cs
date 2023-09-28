@@ -25,7 +25,7 @@ namespace FinalApi.Controllers
         {
             try
             {
-                var Order = _unitOfWork.GetOrderRequest.GetOrders();
+                var Order = _unitOfWork.OrderById.GetOrders();
                 return Ok(Order);
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace FinalApi.Controllers
                     return BadRequest("Id is not a valid integer.");
                 }
 
-                var FindId = _unitOfWork.GetOrderRequest.GetOrderById(numericId);
+                var FindId = _unitOfWork.OrderById.GetOrderById(numericId);
 
                 if (FindId == null)
                 {
@@ -75,7 +75,7 @@ namespace FinalApi.Controllers
         {
             try
             {
-                var getName = _unitOfWork.OrderDto.GetOrderByItem(keyword);
+                var getName = _unitOfWork.OrderGetByItem.GetOrderByItem(keyword);
 
                 if (getName == null && keyword == null)
                 {

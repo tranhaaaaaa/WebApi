@@ -1,8 +1,6 @@
-﻿using FinalApi.Dto;
-using FinalApi.Models;
+﻿using FinalApi.Models;
 using FinalApi.Services.Repository;
 using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 
 namespace FinalApi.Services.Impl
 {

@@ -24,11 +24,10 @@ namespace FinalApi.Services.Impl
                 {
                     ItemDetailId = item.ItemId,
                     Quantity = item.Quantity,
-                }).ToList()
+                }).ToList() 
             };
             _context.Orders.Add(createdOrder);
             _context.SaveChanges();
-
             return null;
         }
 

@@ -3,9 +3,9 @@
     public interface IUnitOfWork :IDisposable
     {
          IOrderCreateRepository CreateOrderRequest { get; }
-        IOrderGetByItemRepository OrderDto { get; }
+        IOrderGetByItemRepository OrderGetByItem { get; }
         ICustomerVipRepository CustomerRequest { get; }
-       IOrderByIdRepository GetOrderRequest { get; }
+       IOrderByIdRepository OrderById { get; }
         IOrderDeleteRepository OrderDeleteRequest { get; }
         int save();
         

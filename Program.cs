@@ -14,7 +14,7 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
-//builder.Services.AddDbContext<projectDemoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("value")));
+builder.Services.AddDbContext<projectDemoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("value")));
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
@@ -78,7 +78,6 @@ builder.Services.AddQuartzHostedService(options =>
 {
     options.WaitForJobsToComplete = true;
 });
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<SecretKeyFilter>();
