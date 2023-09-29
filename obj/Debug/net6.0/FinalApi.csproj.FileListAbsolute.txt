@@ -248,7 +248,6 @@ D:\SWP-Project\FinalApi\obj\Debug\net6.0\FinalApi.pdb
 D:\SWP-Project\FinalApi\obj\Debug\net6.0\FinalApi.genruntimeconfig.cache
 D:\SWP-Project\FinalApi\obj\Debug\net6.0\ref\FinalApi.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Quartz.dll
-D:\SWP-Project\FinalApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\AutoMapper.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Quartz.Extensions.DependencyInjection.dll
@@ -256,9 +255,7 @@ D:\SWP-Project\FinalApi\bin\Debug\net6.0\Quartz.Extensions.Hosting.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\System.Net.Http.Formatting.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\System.Web.Http.dll
-D:\SWP-Project\FinalApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
-D:\SWP-Project\FinalApi\bin\Debug\net6.0\FuzzySharp.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Serilog.dll
 D:\SWP-Project\FinalApi\bin\Debug\net6.0\Serilog.AspNetCore.dll

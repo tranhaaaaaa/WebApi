@@ -29,8 +29,6 @@ namespace FinalApi.Services
                 customer.CustomerType = 1;
             }
             await _context.SaveChangesAsync();
-
-
             return null;
         }
 

@@ -1,5 +1,4 @@
 ﻿using FinalApi.Dto;
-using FinalApi.Models;
 
 namespace FinalApi.Response
 {

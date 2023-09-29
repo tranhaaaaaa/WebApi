@@ -14,8 +14,8 @@ namespace FinalApi.Models
 
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public string? Email { get; set; }
-        public string? Passwords { get; set; }
+        public string Email { get; set; }
+        public string Passwords { get; set; }
         public int? PhoneNumber { get; set; }
         public byte? LockOutEnable { get; set; }
         public DateTime? LockOutEnd { get; set; }

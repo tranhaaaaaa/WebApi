@@ -23,8 +23,8 @@ namespace FinalApi.Models
         public int? CustomerId { get; set; }
         public DateTime OverDueDate { get; set; }
 
-        public virtual Address? Address { get; set; }
-        public virtual Customer? Customer { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<Orderdetail> Orderdetails { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Shipping> Shippings { get; set; }

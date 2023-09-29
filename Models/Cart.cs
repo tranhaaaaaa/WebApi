@@ -13,7 +13,7 @@ namespace FinalApi.Models
         public int CartId { get; set; }
         public int? CustomerId { get; set; }
 
-        public virtual Customer? Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<Cartitem> Cartitems { get; set; }
     }
 }
