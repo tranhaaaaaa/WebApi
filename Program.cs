@@ -11,6 +11,8 @@ using FinalApi.Services.Repository;
 using FinalApi.Services.Impl;
 using FinalApi.FilterHeader;
 using Serilog;
+using FinalApi.Services;
+using FinalApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -80,6 +82,10 @@ builder.Services.AddQuartzHostedService(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICustomerService,CustomerService>(); 
+builder.Services.AddScoped<IOrderServices, OrderServices>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();    
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<SecretKeyFilter>();
 var _logger = new LoggerConfiguration()
 .ReadFrom.Configuration(builder.Configuration).

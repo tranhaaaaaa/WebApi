@@ -1,0 +1,8 @@
+[2023-09-28 22:32:48.692 +07:00[INF] Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl
+][2023-09-28 22:32:48.813 +07:00[INF] Quartz Scheduler created
+][2023-09-28 22:32:48.816 +07:00[INF] JobFactory set to: Quartz.Simpl.MicrosoftDependencyInjectionJobFactory
+][2023-09-28 22:32:48.820 +07:00[INF] RAMJobStore initialized.
+][2023-09-28 22:32:48.831 +07:00[INF] Quartz Scheduler 3.7.0.0 - 'QuartzScheduler' with instanceId 'NON_CLUSTERED' initialized
+][2023-09-28 22:32:48.834 +07:00[INF] Using thread pool 'Quartz.Simpl.DefaultThreadPool', size: 10
+][2023-09-28 22:32:48.841 +07:00[INF] Using job store 'Quartz.Simpl.RAMJobStore', supports persistence: False, clustered: False
+]
