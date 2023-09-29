@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using FinalApi.Models;
 using FinalApi.Services;
 using FinalApi.FilterHeader;
+using FinalApi.Response;
 
 namespace FinalApi.Controllers
 {
     [Route("api/v1")]
     [ApiController]
     [ApiVersion("1.0")]
-    [ServiceFilter(typeof(SecretKeyFilter))]
+ //   [ServiceFilter(typeof(SecretKeyFilter))]
 
     public class OrdersController : ControllerBase
     {
@@ -23,7 +24,7 @@ namespace FinalApi.Controllers
             _context = context;
         }
         [HttpGet("GetOrders/{page}")]
-        public ActionResult GetAllOrders(string page)
+        public IActionResult GetAllOrders(string page)
         {
             try
             {
@@ -32,36 +33,28 @@ namespace FinalApi.Controllers
                     return BadRequest("Page is empty or whitespace.");
                 }
 
-                if (page.All(char.IsLetter))
+                if (!int.TryParse(page, out int pageNumber) || pageNumber <= 0)
                 {
-                    return BadRequest("Page contains only letters and is invalid.");
+                    return BadRequest("Page is not a valid positive integer.");
                 }
 
-                if (!int.TryParse(page, out int pageNumber) && pageNumber < 0)
-                {
-                    return BadRequest("Page is not a valid integer.");
-                }
-                if(pageNumber == 0)
-                {
-                    return BadRequest("Page is not exists.");
-                }
-                var FindId = _orderServices.GetOrderById(pageNumber);
-
-                if (FindId == null)
-                {
-                    return NotFound("Not Found.");
-                }
                 var pageResults = 3;
                 var totalOrders = _context.Orders.Count();
-                var pageCount = (int)Math.Ceiling((double)totalOrders / pageResults);
+                var pageCount = (int)Math.Ceiling((double)totalOrders/pageResults);
 
-                var orderRequests = _orderServices.GetOrders().Skip((pageNumber - 1) * pageResults).Take(pageResults).ToList();
+                if (pageNumber > pageCount)
+                {
+                    return BadRequest("Page is out of range.");
+                }
+
+                var orderRequests = _orderServices.GetOrders()
+                    .Skip((pageNumber - 1) * pageResults)
+                    .Take(pageResults)
+                    .ToList();
 
                 var response = new OrderResponse
                 {
                     Orders = orderRequests,
-                    CurrentPage = pageNumber,
-                    Page = pageCount
                 };
 
                 return Ok(response);
@@ -141,7 +134,6 @@ namespace FinalApi.Controllers
                 {
                     return BadRequest("Invalid input: Request body is empty.");
                 }
-
                 var createdOrderId = _orderServices.CreateOrders(request);
 
                

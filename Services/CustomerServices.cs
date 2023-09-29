@@ -12,25 +12,30 @@ namespace FinalApi.Services
          _context = context;
         }
 
-        public Task<IEnumerable<CustomerRequest>> CreateCustomerVipAsync()
+        public async Task<IEnumerable<CustomerRequest>> CreateCustomerVipAsync()
         {
-            var vipCustomers = _context.Customers
+         
+            var vipCustomers = await _context.Customers
                .Where(c => _context.Orders
                    .Where(o => _context.Orderdetails.Any(od => od.OrderId == o.OrderId))
                    .GroupBy(o => o.CustomerId)
                    .Where(g => g.Sum(o => o.TotalPrice) > 4 || g.SelectMany(o => o.Orderdetails).Select(od => od.ItemDetailId).Distinct().Count() > 2)
                    .Select(g => g.Key)
                    .Contains(c.CustomerId))
-               .ToList();
+               .ToListAsync();
 
+          
+
+       
             foreach (var customer in vipCustomers)
             {
                 customer.CustomerType = 1;
             }
-             _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
 
             return null;
-          
         }
+
     }
 }
