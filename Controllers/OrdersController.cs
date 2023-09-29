@@ -1,10 +1,9 @@
 ﻿using FinalApi.Dto;
 using Microsoft.AspNetCore.Mvc;
 using FinalApi.Models;
-using FinalApi.Services;
 using FinalApi.FilterHeader;
 using FinalApi.Response;
-using System.Transactions;
+using FinalApi.Services.Repository;
 
 namespace FinalApi.Controllers
 {
@@ -12,8 +11,8 @@ namespace FinalApi.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-     [ApiVersion("1.2")]
-    [ServiceFilter(typeof(SecretKeyFilter))]
+    [ApiVersion("1.2")]
+  // [ServiceFilter(typeof(SecretKeyFilter))]
 
     public class OrdersController : ControllerBase
     {
@@ -22,7 +21,7 @@ namespace FinalApi.Controllers
         private readonly projectDemoContext _context;
         public OrdersController(IOrderServices orderServices, ICustomerService customerService, projectDemoContext context)
         {
-            _orderServices = orderServices;
+            _orderServices =   orderServices;
             _customerService = customerService;
             _context = context;
         }
@@ -31,35 +30,19 @@ namespace FinalApi.Controllers
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(page))
+                if (string.IsNullOrWhiteSpace(page) || !int.TryParse(page, out int pageNumber) || pageNumber <= 0)
                 {
-                    return BadRequest("Page is empty or whitespace.");
+                    return BadRequest("Invalid page number.");
                 }
 
-                if (!int.TryParse(page, out int pageNumber) || pageNumber <= 0)
-                {
-                    return BadRequest("Page is not a valid positive integer and more than 0.");
-                }
-
-                var pageResults = 3;
-                var totalOrders = _context.Orders.Count();
-                var pageCount = (int)Math.Ceiling((double)totalOrders/pageResults);
-
-                if (pageNumber > pageCount)
-                {
-                    return BadRequest("Page is out of range.");
-                }
-
-                var orderRequests = _orderServices.GetOrders()
-                    .Skip((pageNumber - 1) * pageResults)
-                    .Take(pageResults)
-                    .ToList();
+                var pageResults = 3; 
+                var orderRequests = _orderServices.GetOrders(pageNumber, pageResults);
 
                 var response = new OrderResponse
                 {
-                    Orders = orderRequests,
+                    Orders = orderRequests.ToList(), 
                 };
-              
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -67,6 +50,7 @@ namespace FinalApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
             }
         }
+
 
         [HttpGet("GetOrdersss/{id}")]
         public IActionResult GetOrderById(string id)
@@ -122,6 +106,7 @@ namespace FinalApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
             }
         }
+
         [HttpPut("CreateCustomer-vip")]
         public IActionResult CreateCustomerVip()
         {
