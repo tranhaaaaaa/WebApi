@@ -4,6 +4,7 @@ using FinalApi.Models;
 using FinalApi.Services;
 using FinalApi.FilterHeader;
 using FinalApi.Response;
+using System.Transactions;
 
 namespace FinalApi.Controllers
 {
@@ -28,97 +29,115 @@ namespace FinalApi.Controllers
         [HttpGet("GetOrders/{page}")]
         public IActionResult GetAllOrders(string page)
         {
-            try
+            using (TransactionScope scope = new TransactionScope())
             {
-                if (string.IsNullOrWhiteSpace(page))
+                try
                 {
-                    return BadRequest("Page is empty or whitespace.");
+                    if (string.IsNullOrWhiteSpace(page))
+                    {
+                        return BadRequest("Page is empty or whitespace.");
+                    }
+
+                    if (!int.TryParse(page, out int pageNumber) || pageNumber <= 0)
+                    {
+                        return BadRequest("Page is not a valid positive integer and more than 0.");
+                    }
+
+                    var pageResults = 3;
+                    var totalOrders = _context.Orders.Count();
+                    var pageCount = (int)Math.Ceiling((double)totalOrders / pageResults);
+
+                    if (pageNumber > pageCount)
+                    {
+                        return BadRequest("Page is out of range.");
+                    }
+
+                    var orderRequests = _orderServices.GetOrders()
+                        .Skip((pageNumber - 1) * pageResults)
+                        .Take(pageResults)
+                        .ToList();
+
+                    var response = new OrderResponse
+                    {
+                        Orders = orderRequests,
+                    };
+
+
+                    return Ok(response);
+                    scope.Complete();
                 }
 
-                if (!int.TryParse(page, out int pageNumber) || pageNumber <= 0)
+                catch (Exception ex)
                 {
-                    return BadRequest("Page is not a valid positive integer and more than 0.");
+                    scope.Dispose();
+                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
                 }
-
-                var pageResults = 3;
-                var totalOrders = _context.Orders.Count();
-                var pageCount = (int)Math.Ceiling((double)totalOrders/pageResults);
-
-                if (pageNumber > pageCount)
-                {
-                    return BadRequest("Page is out of range.");
-                }
-
-                var orderRequests = _orderServices.GetOrders()
-                    .Skip((pageNumber - 1) * pageResults)
-                    .Take(pageResults)
-                    .ToList();
-
-                var response = new OrderResponse
-                {
-                    Orders = orderRequests,
-                };
-
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
             }
         }
 
         [HttpGet("GetOrdersss/{id}")]
         public IActionResult GetOrderById(string id)
         {
-            try
+            using (TransactionScope scope = new TransactionScope())
             {
-                if (string.IsNullOrWhiteSpace(id))
+
+                try
                 {
-                    return BadRequest("Id is empty or whitespace.");
+                    if (string.IsNullOrWhiteSpace(id))
+                    {
+                        return BadRequest("Id is empty or whitespace.");
+                    }
+
+                    if (id.All(char.IsLetter))
+                    {
+                        return BadRequest("Id contains only letters and is invalid.");
+                    }
+
+                    if (!int.TryParse(id, out int numericId) && numericId < 0)
+                    {
+                        return BadRequest("Id is not a valid integer.");
+                    }
+
+                    var FindId = _orderServices.GetOrderById(numericId);
+
+                    if (FindId == null)
+                    {
+                        return NotFound("Not Found.");
+                    }
+
+                    return Ok(FindId);
                 }
 
-                if (id.All(char.IsLetter))
+                catch (Exception ex)
                 {
-                    return BadRequest("Id contains only letters and is invalid.");
+                    scope.Dispose();
+                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
                 }
-
-                if (!int.TryParse(id, out int numericId) && numericId < 0)
-                {
-                    return BadRequest("Id is not a valid integer.");
-                }
-
-                var FindId = _orderServices.GetOrderById(numericId);
-
-                if (FindId == null)
-                {
-                    return NotFound("Not Found.");
-                }
-
-                return Ok(FindId);
-            }
-
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
             }
         }
         [HttpGet("GetOrderBy/{keyword}")]
         public IActionResult GetOrderByItemName(string keyword)
         {
-            try
-            {
-                var getName = _orderServices.GetOrderByItem(keyword);
 
-                if (getName == null)
+            using (TransactionScope scope = new TransactionScope())
+            {
+
+                try
                 {
-                    return NotFound("Not Found.");
-                }
+                    var getName = _orderServices.GetOrderByItem(keyword);
 
-                return Ok(getName);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
+                    if (getName == null)
+                    {
+                        return NotFound("Not Found.");
+                    }
+
+                    return Ok(getName);
+                }
+                catch (Exception ex)
+                {
+                    scope.Dispose();
+                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
+                }
             }
         }
         [HttpPut("CreateCustomer-vip")]
@@ -131,40 +150,50 @@ namespace FinalApi.Controllers
         [HttpPost("CreateOrders")]
         public IActionResult CreateOrders([FromBody] CreateOrderRequest request)
         {
-            try
+            using (TransactionScope scope = new TransactionScope())
             {
-                if (request == null)
-                {
-                    return BadRequest("Invalid input: Request body is empty.");
-                }
-                var createdOrderId = _orderServices.CreateOrders(request);
 
-               
-                return Ok();
+                try
+                {
+                    if (request == null)
+                    {
+                        return BadRequest("Invalid input: Request body is empty.");
+                    }
+                    var createdOrderId = _orderServices.CreateOrders(request);
+
+
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    scope.Dispose();
+                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);
-            }
+
         }
 
         [HttpDelete("Delete/{idOrder},{idItem}")]
         public IActionResult DeleteItemInOrder(int idOrder, int idItem)
         {
-             try
+            using (TransactionScope scope = new TransactionScope())
             {
-                _orderServices.RemoveItemFromOrder(idOrder, idItem);
-              
+                try
+                {
+                    _orderServices.RemoveItemFromOrder(idOrder, idItem);
+
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    scope.Dispose();
+                    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                }
+                return Ok();
             }
-            catch (ArgumentException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message); 
-            }
-            return Ok();
         }
 
     }

@@ -663,27 +663,26 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
-      "Microsoft.AspNet.WebApi.Client/5.2.4": {
+      "Microsoft.AspNet.WebApi.Client/5.2.0": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "10.0.1",
-          "Newtonsoft.Json.Bson": "1.0.1"
+          "Newtonsoft.Json": "4.5.11"
         },
         "compile": {
-          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {
+          "lib/net45/System.Net.Http.Formatting.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Net.Http.Formatting.dll": {
+          "lib/net45/System.Net.Http.Formatting.dll": {
             "related": ".xml"
           }
         }
       },
-      "Microsoft.AspNet.WebApi.Core/5.2.4": {
+      "Microsoft.AspNet.WebApi.Core/5.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNet.WebApi.Client": "5.2.4"
+          "Microsoft.AspNet.WebApi.Client": "5.2.0"
         },
         "compile": {
           "lib/net45/System.Web.Http.dll": {
@@ -2130,23 +2129,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Newtonsoft.Json.Bson/1.0.1": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "10.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {
             "related": ".xml"
           }
         }
@@ -5093,34 +5075,32 @@
         "tools/uninstall.ps1"
       ]
     },
-    "Microsoft.AspNet.WebApi.Client/5.2.4": {
-      "sha512": "OdBVC2bQWkf9qDd7Mt07ev4SwIdu6VmLBMTWC0D5cOP/HWSXyv/77otwtXVrAo42duNjvXOjzjP5oOI9m1+DTQ==",
+    "Microsoft.AspNet.WebApi.Client/5.2.0": {
+      "sha512": "aoS8o4BPb1Wc0A3W5xX0iHiqgnk9xmP4iSxZdNlEbtu5SgTgDyKya5FGq4GzjRw7FlQDBQ5t9s4p/saa0OFA4A==",
       "type": "package",
-      "path": "microsoft.aspnet.webapi.client/5.2.4",
+      "path": "microsoft.aspnet.webapi.client/5.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/System.Net.Http.Formatting.dll",
         "lib/net45/System.Net.Http.Formatting.xml",
-        "lib/netstandard2.0/System.Net.Http.Formatting.dll",
-        "lib/netstandard2.0/System.Net.Http.Formatting.xml",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
-        "microsoft.aspnet.webapi.client.5.2.4.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.5.2.0.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
       ]
     },
-    "Microsoft.AspNet.WebApi.Core/5.2.4": {
-      "sha512": "rbLh178vmOWxhFQgiVkKmZyG53XEdyBZJbCsV36a4VxokIBzSRYUaMkXWEwJTy83PoHhPiDHNQFN3A3BQzwhtg==",
+    "Microsoft.AspNet.WebApi.Core/5.2.0": {
+      "sha512": "OndfBxMYy/rFi86YAtzV2P815P09ZQnJNjDdCwN5v9cutN6GdI0YVcdlMlNw/WpVg9iN1yLkUxMx433tIQ15ZA==",
       "type": "package",
-      "path": "microsoft.aspnet.webapi.core/5.2.4",
+      "path": "microsoft.aspnet.webapi.core/5.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Content/web.config.transform",
         "lib/net45/System.Web.Http.dll",
         "lib/net45/System.Web.Http.xml",
-        "microsoft.aspnet.webapi.core.5.2.4.nupkg.sha512",
+        "microsoft.aspnet.webapi.core.5.2.0.nupkg.sha512",
         "microsoft.aspnet.webapi.core.nuspec"
       ]
     },
@@ -7482,21 +7462,6 @@
         "newtonsoft.json.13.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
-      ]
-    },
-    "Newtonsoft.Json.Bson/1.0.1": {
-      "sha512": "5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
-      "type": "package",
-      "path": "newtonsoft.json.bson/1.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Newtonsoft.Json.Bson.dll",
-        "lib/net45/Newtonsoft.Json.Bson.xml",
-        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
-        "newtonsoft.json.bson.1.0.1.nupkg.sha512",
-        "newtonsoft.json.bson.nuspec"
       ]
     },
     "NuGet.Common/6.3.1": {
@@ -12015,7 +11980,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
-      "Microsoft.AspNet.WebApi.Core >= 5.2.4",
+      "Microsoft.AspNet.WebApi.Core >= 5.2.0",
       "Microsoft.AspNetCore.Mvc.Versioning >= 5.1.0",
       "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.18",
@@ -12080,7 +12045,7 @@
           },
           "Microsoft.AspNet.WebApi.Core": {
             "target": "Package",
-            "version": "[5.2.4, )"
+            "version": "[5.2.0, )"
           },
           "Microsoft.AspNetCore.Mvc.Versioning": {
             "target": "Package",
@@ -12157,7 +12122,17 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.AspNet.WebApi.Client 5.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Client",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         "net6.0"
