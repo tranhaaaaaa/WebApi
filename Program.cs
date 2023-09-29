@@ -8,7 +8,6 @@ using FinalApi.FilterHeader;
 using Serilog;
 using FinalApi.Services;
 using FinalApi.Repository;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<projectDemoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("value")));
@@ -99,7 +98,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
-
 app.MapControllers();
 app.Run();
 

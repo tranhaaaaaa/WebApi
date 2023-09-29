@@ -24,9 +24,6 @@ namespace FinalApi.Services
                    .Contains(c.CustomerId))
                .ToListAsync();
 
-          
-
-       
             foreach (var customer in vipCustomers)
             {
                 customer.CustomerType = 1;

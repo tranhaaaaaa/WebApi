@@ -10,7 +10,9 @@ namespace FinalApi.Controllers
     [Route("api/v1")]
     [ApiController]
     [ApiVersion("1.0")]
- //   [ServiceFilter(typeof(SecretKeyFilter))]
+    [ApiVersion("1.1")]
+     [ApiVersion("1.2")]
+    [ServiceFilter(typeof(SecretKeyFilter))]
 
     public class OrdersController : ControllerBase
     {
@@ -94,6 +96,7 @@ namespace FinalApi.Controllers
 
                 return Ok(FindId);
             }
+
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request: " + ex.Message);

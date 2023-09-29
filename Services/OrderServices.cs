@@ -32,8 +32,6 @@ namespace FinalApi.Services
             return null;
           
         }
-    
-
         public GetOrderRequest GetOrderById(int id)
         {
             var GetIdItem = (from o in _context.Orders
@@ -80,8 +78,6 @@ namespace FinalApi.Services
             return orderDto;
            
         }
-    
-
         public IEnumerable<OrderDto> GetOrderByItem(string Name)
         {
 
@@ -120,8 +116,6 @@ namespace FinalApi.Services
             return searchResults;
            
         }
-    
-
         public IEnumerable<GetOrderRequest> GetOrders()
         {
             var orders = (from o in _context.Orders

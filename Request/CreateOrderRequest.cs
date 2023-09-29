@@ -1,8 +1,7 @@
 ﻿namespace FinalApi.Dto
 {
     public class CreateOrderRequest
-    {
-       
+    {    
         public DateTime? OrderDate { get; set; }
         public string Status { get; set; }
         public string Note { get; set; }

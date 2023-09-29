@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using Microsoft.EntityFrameworkCore;
-using FuzzySharp;
-using Microsoft.EntityFrameworkCore.Metadata;
-
 namespace FinalApi.Models
 {
     public partial class projectDemoContext : DbContext
@@ -390,22 +386,6 @@ namespace FinalApi.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
-
-        //[DbFunction(name:"SOUNDEX", IsBuiltIn =true)]
-        //public string FuzzySearch(string query)
-        //{
-        //    throw new NotImplementedException();
-        //}
-        //[DbFunction(name: "FuzzySearchFromEnd", IsBuiltIn = true)]
-        //public static bool FuzzySearchFromEnd(string query)
-        //{
-
-
-
-        //    query = query.ToLower();
-        //    query = query.ToUpper();
-        //    return query.EndsWith(query);
-        //}
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
