@@ -35,7 +35,7 @@ namespace FinalApi.Controllers
 
                 if (!int.TryParse(page, out int pageNumber) || pageNumber <= 0)
                 {
-                    return BadRequest("Page is not a valid positive integer.");
+                    return BadRequest("Page is not a valid positive integer and more than 0.");
                 }
 
                 var pageResults = 3;
@@ -106,7 +106,7 @@ namespace FinalApi.Controllers
             {
                 var getName = _orderServices.GetOrderByItem(keyword);
 
-                if (getName == null && keyword == null)
+                if (getName == null)
                 {
                     return NotFound("Not Found.");
                 }
