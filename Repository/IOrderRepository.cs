@@ -7,7 +7,6 @@ namespace FinalApi.Repository
         CreateOrderRequest CreateOrders(CreateOrderRequest CreateOrderRequest);
         void RemoveItemFromOrder(int idOrder, int itemId);
         IEnumerable<OrderDto> GetOrderByItems(string Name);
-
         IEnumerable<GetOrderRequest> GetOrders();
 
     }
