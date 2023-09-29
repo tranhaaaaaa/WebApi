@@ -1,5 +1,4 @@
-﻿using FinalApi.Models;
-using FinalApi.Request;
+﻿using FinalApi.Request;
 using FinalApi.Services;
 
 namespace FinalApi.Repository
@@ -7,7 +6,6 @@ namespace FinalApi.Repository
     public class CustomerRepository :ICustomerRepository
     {
         private readonly ICustomerService _customerServices;
-            
 
         public CustomerRepository(ICustomerService customerServices)
         {

@@ -1,7 +1,5 @@
 ﻿using FinalApi.Dto;
 using FinalApi.Models;
-using FinalApi.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace FinalApi.Services
 {

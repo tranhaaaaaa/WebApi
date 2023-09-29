@@ -1,6 +1,4 @@
 ﻿using FinalApi.Dto;
-using FinalApi.Models;
-using FinalApi.Services.Repository;
 
 namespace FinalApi.Services
 {

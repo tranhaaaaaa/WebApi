@@ -1,8 +1,4 @@
-﻿using FinalApi.Models;
-using FinalApi.Request;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+﻿using FinalApi.Request;
 namespace FinalApi.Services
 {
     public interface ICustomerService

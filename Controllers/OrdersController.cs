@@ -1,15 +1,15 @@
-﻿using FinalApi.Services.Repository;
-using FinalApi.Dto;
+﻿using FinalApi.Dto;
 using Microsoft.AspNetCore.Mvc;
 using FinalApi.Models;
 using FinalApi.Services;
+using FinalApi.FilterHeader;
 
 namespace FinalApi.Controllers
 {
     [Route("api/v1")]
     [ApiController]
     [ApiVersion("1.0")]
- //   [ServiceFilter(typeof(SecretKeyFilter))]
+    [ServiceFilter(typeof(SecretKeyFilter))]
 
     public class OrdersController : ControllerBase
     {

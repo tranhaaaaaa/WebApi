@@ -1,10 +1,6 @@
 ﻿using FinalApi.Models;
-using FinalApi.Repository;
 using FinalApi.Request;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinalApi.Services
 {

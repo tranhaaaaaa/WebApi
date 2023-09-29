@@ -1,4 +1,4 @@
-﻿using FinalApi.Services.Repository;
+﻿using FinalApi.Services;
 using Quartz;
 
 
@@ -6,15 +6,15 @@ namespace FinalApi.Jobs
 {
     public class CreateCustomerVipJob : IJob
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICustomerService _customerService;
        
-        public CreateCustomerVipJob( IUnitOfWork unitOfWork)
+        public CreateCustomerVipJob( ICustomerService customerService)
         {  
-            _unitOfWork = unitOfWork;
+           _customerService = customerService;
         }
         public async Task Execute(IJobExecutionContext context)
         {
-            await _unitOfWork.CustomerRequest.CreateCustomerVipAsync();
+            await _customerService.CreateCustomerVipAsync();
         }
 
     }
