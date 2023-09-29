@@ -1,20 +1,21 @@
 ﻿using FinalApi.Models;
 using FinalApi.Request;
+using FinalApi.Services.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinalApi.Services
+namespace FinalApi.Services.Impl
 {
     public class CustomerService : ICustomerService
     {
         private readonly projectDemoContext _context;
         public CustomerService(projectDemoContext context)
         {
-         _context = context;
+            _context = context;
         }
 
         public async Task<IEnumerable<CustomerRequest>> CreateCustomerVipAsync()
         {
-         
+
             var vipCustomers = await _context.Customers
                .Where(c => _context.Orders
                    .Where(o => _context.Orderdetails.Any(od => od.OrderId == o.OrderId))

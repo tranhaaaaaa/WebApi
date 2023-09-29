@@ -1,5 +1,6 @@
 ﻿using FinalApi.Request;
-namespace FinalApi.Services
+
+namespace FinalApi.Services.Repository
 {
     public interface ICustomerService
     {

@@ -1,6 +1,6 @@
 ﻿using FinalApi.Dto;
 
-namespace FinalApi.Services
+namespace FinalApi.Services.Repository
 {
     public interface IOrderServices
     {
@@ -9,9 +9,9 @@ namespace FinalApi.Services
         void RemoveItemFromOrder(int idOrder, int itemId);
         IEnumerable<OrderDto> GetOrderByItem(string Name);
 
-        IEnumerable<GetOrderRequest> GetOrders();
-       
-        
-        
+        IEnumerable<GetOrderRequest> GetOrders(int pageNumber, int page);
+
+
+
     }
 }
