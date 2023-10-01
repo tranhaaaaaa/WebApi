@@ -153,16 +153,11 @@ namespace FinalApi.Services.Impl
                               Quantity = groupedItems.Sum(ia => ia.od.Quantity),
                               TotalPrice = groupedItems.Sum(ia => ia.od.Quantity * ia.it.ItemPrice)
                           }).ToList();
-
-          
             int startIndex = (pageNumber - 1) * pageResults;
             var pagedOrders = orders.Skip(startIndex).Take(pageResults);
 
             return pagedOrders;
         }
-
-
-
         public void RemoveItemFromOrder(int idOrder, int itemId)
         {
             var DeleteItem = (from o in _context.Orders

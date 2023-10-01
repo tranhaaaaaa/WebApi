@@ -15,8 +15,7 @@ namespace FinalApi.Services.Impl
 
         public async Task<IEnumerable<CustomerRequest>> CreateCustomerVipAsync()
         {
-
-            var vipCustomers = await _context.Customers
+               var vipCustomers = await _context.Customers
                .Where(c => _context.Orders
                    .Where(o => _context.Orderdetails.Any(od => od.OrderId == o.OrderId))
                    .GroupBy(o => o.CustomerId)

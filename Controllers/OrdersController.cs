@@ -10,9 +10,9 @@ namespace FinalApi.Controllers
     [Route("api/v1")]
     [ApiController]
     [ApiVersion("1.0")]
-    [ApiVersion("1.1")]
+    [ApiVersion("2.0")]
     [ApiVersion("1.2")]
-  // [ServiceFilter(typeof(SecretKeyFilter))]
+    [ServiceFilter(typeof(SecretKeyFilter))]
 
     public class OrdersController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace FinalApi.Controllers
         private readonly projectDemoContext _context;
         public OrdersController(IOrderServices orderServices, ICustomerService customerService, projectDemoContext context)
         {
-            _orderServices =   orderServices;
+            _orderServices =  orderServices;
             _customerService = customerService;
             _context = context;
         }

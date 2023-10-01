@@ -386,6 +386,8 @@ namespace FinalApi.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
+
+ 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 

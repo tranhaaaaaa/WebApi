@@ -8,10 +8,6 @@ namespace FinalApi.Services.Repository
         CreateOrderRequest CreateOrders(CreateOrderRequest request);
         void RemoveItemFromOrder(int idOrder, int itemId);
         IEnumerable<OrderDto> GetOrderByItem(string Name);
-
         IEnumerable<GetOrderRequest> GetOrders(int pageNumber, int page);
-
-
-
     }
 }

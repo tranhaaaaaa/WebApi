@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
-using System.Threading.Tasks;
-
 namespace FinalApi.FilterHeader
 {
     public class SecretKeyFilter : IAsyncActionFilter

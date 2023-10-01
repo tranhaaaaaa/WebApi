@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using FinalApi.FilterHeader;
 using Serilog;
-using FinalApi.Services;
-using FinalApi.Repository;
+using FinalApi.Services.Repository;
+using FinalApi.Services.Impl;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<projectDemoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("value")));
@@ -45,31 +46,6 @@ builder.Services.AddVersionedApiExplorer(options =>
 });
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
-    {
-        Description = "The SecretKey to access API",
-        Type = SecuritySchemeType.ApiKey,
-        Name = "ApiKey",
-        In = ParameterLocation.Header,
-        Scheme = "Secret key Scheme"
-    });
-    var scheme = new OpenApiSecurityScheme
-    {
-        Reference = new OpenApiReference
-        {
-            Type = ReferenceType.SecurityScheme,
-            Id = "ApiKey",
-        },
-        In = ParameterLocation.Header
-    };
-    var requirement = new OpenApiSecurityRequirement
-        {
-            {scheme, new List<String>() }
-        };
-    c.AddSecurityRequirement(requirement);
-});
 builder.Services.AddQuartzHostedService(options =>
 {
     options.WaitForJobsToComplete = true;
@@ -77,8 +53,6 @@ builder.Services.AddQuartzHostedService(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<ICustomerService,CustomerService>(); 
 builder.Services.AddScoped<IOrderServices, OrderServices>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();    
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<SecretKeyFilter>();
 var _logger = new LoggerConfiguration()
 .ReadFrom.Configuration(builder.Configuration).
